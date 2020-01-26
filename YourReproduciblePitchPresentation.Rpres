@@ -1,0 +1,58 @@
+Reproducible Pitch Presentation
+========================================================
+author: Thorsten 
+date: 26 1 2020
+autosize: true
+class: illustration
+
+About the Course Project
+========================================================
+
+This is a deliverable for the course Developing Data Products as part of the Coursera Data Science Specialization.
+
+Instructions:
+
+1. Write a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.
+2. Deploy the application on Rstudio's shiny server
+3. Share the application link by pasting it into the provided text box
+4. Share your server.R and ui.R code on github
+
+The data
+========================================================
+
+Using the data provided by Met Office Hadley Centre, Climate Research Unit; HadCRUT.4.4.0.0 model; median of 100 calculated time series, 
+we fit a linear model to predict the deviation of the global air temparature deviation based to the aveage of surface temperature 1961-1990.
+
+For the prediction model the deviation data from 1975 to 2018 have been used.
+
+<!-- Check for dependencies -->
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+require(ggplot2)
+require(dplyr)
+```
+
+```{r cache=TRUE, fig.width=10,fig.height=5, echo = FALSE}
+Year <- c(1975:2018)
+Temperature_Deviation <- c(-0.149,0.241,0.047,-0.062,0.057,0.0920,0.1400,0.0110,0.1940,-0.0140,-0.0300,0.0450,0.1920,0.1980,0.1180,0.2960,0.2540,0.1050,0.1480,0.2080,0.3250,0.1830,0.3900,
+                           0.5390,0.3060,0.2940,0.4410,0.4960,0.5050,0.4470,0.5450,0.5060,0.4910,0.3950,0.5060,0.5600,0.4250,0.4700,0.5140,0.5790,0.7630,0.7970,0.6770,0.5970)
+dt_climate <- data.frame(Year,Temperature_Deviation)
+ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue') + ggtitle("Gobal Temperature Deviation [C°]")
+```
+```
+
+How to use the application
+========================================================
+
+You can select a year to get the estimated predicted air temperature deviation.
+
+The application is running on (https://eifelmaar.shinyapps.io/Coursera_Shiny/)
+
+Links
+========================================================
+
+- ui.R
+- Server.R 
+- Your ReproduciblePitchPresentation.Rmd (this code)
+  is available in github repository (https://github.com/EifelMaar/Shiny-Application-and-Reproducible-Pitch)
+- YourReproduciblePitchPresentation.html
+  is available via gh-pages (https://eifelmaar.github.io/Shiny-Application-and-Reproducible-Pitch/YourReproduciblePitchPresentation.html)
