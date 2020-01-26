@@ -2,8 +2,8 @@
 title: "Reproducible Pitch Presentation"
 author: "Thorsten"
 date: "26 1 2020"
-#output: slidy_presentation
-output: ioslides_presentation
+output: slidy_presentation
+#output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
