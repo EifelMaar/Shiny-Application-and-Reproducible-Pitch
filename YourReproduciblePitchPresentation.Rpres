@@ -35,7 +35,7 @@ Temperature_Deviation <- c(-0.149,0.241,0.047,-0.062,0.057,0.0920,0.1400,0.0110,
 ```
 ```{r cache=TRUE, fig.width=8,fig.height=3}
 dt_climate <- data.frame(Year,Temperature_Deviation)
-ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue') + ggtitle("Gobal Temperature Deviation [C°]")
+ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue')
 ```
 
 How to use the application (Documentation)
@@ -44,10 +44,10 @@ How to use the application (Documentation)
 - The red line will show the fitted and prediction values.
 - You can select a year to get the estimated predicted air temperature deviation.
 
-```{r cache=TRUE, fig.width=8,fig.height=3}
+```{r cache=TRUE, fig.width=8,fig.height=3, echo=FALSE}
 fit_all = lm(Temperature_Deviation~Year, data=dt_climate)
 dt_climate$predlm = predict(fit_all)
-ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue') + ggtitle("Gobal Temperature Deviation [C°]") + geom_line(color='red', aes(y = predlm), size = 1)
+ggplot(dt_climate, aes(Year, Temperature_Deviation)) +  geom_line(color='blue')  + geom_line(color='red', aes(y = predlm), size = 1)
 ```
 <small>The application is running on (https://eifelmaar.shinyapps.io/Coursera_Shiny/)</small>
 
