@@ -1,7 +1,7 @@
 Reproducible Pitch Presentation
 ========================================================
 author: Thorsten 
-date: 26 1 2020
+date: 30 1 2020
 autosize: true
 class: illustration
 
@@ -20,8 +20,8 @@ Instructions:
 The data
 ========================================================
 
-Using the data provided by Met Office Hadley Centre, Climate Research Unit; HadCRUT.4.4.0.0 model; median of 100 calculated time series, 
-we fit a linear model to predict the deviation of the global air temparature deviation based to the aveage of surface temperature 1961-1990.
+<small>Using the data provided by Met Office Hadley Centre, Climate Research Unit; HadCRUT.4.4.0.0 model; median of 100 calculated time series, 
+we fit a linear model to predict the deviation of the global air temparature deviation based to the aveage of surface temperature 1961-1990.</small>
 
 For the prediction model the deviation data from 1975 to 2018 have been used.
 
@@ -35,15 +35,25 @@ require(dplyr)
 Year <- c(1975:2018)
 Temperature_Deviation <- c(-0.149,0.241,0.047,-0.062,0.057,0.0920,0.1400,0.0110,0.1940,-0.0140,-0.0300,0.0450,0.1920,0.1980,0.1180,0.2960,0.2540,0.1050,0.1480,0.2080,0.3250,0.1830,0.3900,
                            0.5390,0.3060,0.2940,0.4410,0.4960,0.5050,0.4470,0.5450,0.5060,0.4910,0.3950,0.5060,0.5600,0.4250,0.4700,0.5140,0.5790,0.7630,0.7970,0.6770,0.5970)
+```
+```{r cache=TRUE, fig.width=8,fig.height=4}
 dt_climate <- data.frame(Year,Temperature_Deviation)
 ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue') + ggtitle("Gobal Temperature Deviation [C°]")
 ```
-```
 
-How to use the application
+How to use the application (Documnetation)
 ========================================================
 
-You can select a year to get the estimated predicted air temperature deviation.
+
+- For the prediction I used the data from 1975 to 2018 and fitted a linear model.
+- The red line will show the fitted and prediction values.
+- You can select a year to get the estimated predicted air temperature deviation.
+
+```{r cache=TRUE, fig.width=8,fig.height=4}
+fit_all = lm(Temperature_Deviation~Year, data=dt_climate)
+dt_climate$predlm = predict(fit_all)
+ggplot(dt_climate, aes(Year, Temperature_Deviation)) + geom_line(color='blue') + ggtitle("Gobal Temperature Deviation [C°]") + geom_line(color='red', aes(y = predlm), size = 1)
+```
 
 The application is running on (https://eifelmaar.shinyapps.io/Coursera_Shiny/)
 
