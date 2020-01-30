@@ -12,6 +12,7 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
 
+    headerPanel("The Shiny App"),
     # Application title
     titlePanel("Deviation from global average surface temperature 1961-1990"),
 
@@ -23,15 +24,19 @@ shinyUI(fluidPage(
                         "Prediction Year",
                         min = 1990,
                         max = 2090,
-                        value = 2020,
+                        value = 2018,
                         step=1,sep="")
         ),
 
         # Show a plot of the global temperature deviation and the predicted value for a input year
         mainPanel(
-            plotOutput("distPlot"),
-            verbatimTextOutput("result", placeholder = TRUE)
-        )
+            
+            tabsetPanel(
+                tabPanel("Plot",plotOutput("distPlot"), verbatimTextOutput("result", placeholder = TRUE)
+                         ),
+                tabPanel("Dokumentation", verbatimTextOutput("dok", placeholder = TRUE))
+        ))
+        #
     ),
     hr(),
     print("Source: Met Office Hadley Centre, Climate Research Unit; HadCRUT.4.4.0.0 model; median of 100 calculated time series")
